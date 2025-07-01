@@ -1,6 +1,7 @@
 from TurntoPSSM import parse_pssm, pssm_to_features_for_cnn
 import os
 import numpy as np
+os.environ["CUDA_VISIBLE_DEVICES"] = "-1"
 import tensorflow as tf
 
 def load_cnn_dataset(pssm_dir, labels_dict, max_len=500):
