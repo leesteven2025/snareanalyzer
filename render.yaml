@@ -1,0 +1,10 @@
+services
+  -type: web
+   name: snare-predictor
+   env:python
+   buildCommand : pip install -r requirements.txt
+   startCommand: python app.py
+   envVars:
+     - keys: Flask_ENV  
+       value: production
+  

@@ -1,0 +1,6 @@
+Flask
+joblib
+numpy
+tensorflow
+scikit-learn
+biopython

@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="zh-tw">
+<head>
+  <meta charset="UTF-8">
+  <title>生物資訊預測平台</title>
+</head>
+<body>
+  <h2>FASTA 上傳與預測</h2>
+  <form id="predict-form">
+    <input type="file" name="fasta_file" required><br><br>
+    <label><input type="radio" name="model_type" value="svm" checked> SVM</label>
+    <label><input type="radio" name="model_type" value="cnn"> CNN</label><br><br>
+    <button type="submit">開始預測</button>
+  </form>
+
+  <h3 id="result"></h3>
+  <p>注意：預測結果僅供參考，實際應用中請結合其他生物資訊進行綜合分析。</p>
+
+  <script>
+    document.getElementById('predict-form').addEventListener('submit', async function(event) {
+      event.preventDefault();
+      const formData = new FormData(this);
+      const response = await fetch('/predict', {
+        method: 'POST',
+        body: formData
+      });
+      const data = await response.json();
+      const resultNum = Number(data.result);
+      if (data.result !== undefined) 
+      {
+        if(resultNum >= 0.5) 
+        {
+          data.result = '預測結果 : 該蛋白為snare蛋白';
+        } 
+        else 
+        {
+          data.result = '預測結果 : 該蛋白並非snare蛋白';
+        }
+        document.getElementById('result').innerText = data.result;
+      } else {
+        document.getElementById('result').innerText = `錯誤：${data.error}`;
+      }
+    });
+  </script>
+</body>
+</html>
