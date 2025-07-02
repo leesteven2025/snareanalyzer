@@ -1,4 +1,4 @@
-# 🔬 生物資訊預測平台 snareanalyzer
+# 🔬 生物資訊預測平台 snare analyzer
 
 本專案為一個基於 Flask 的生物資訊預測網站，可上傳 FASTA 檔案、轉換成 PSSM，再透過 CNN 或 SVM 模型進行snare蛋白質序列的分類預測。
 
